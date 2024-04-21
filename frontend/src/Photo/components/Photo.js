@@ -13,6 +13,8 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { faCircle } from "@fortawesome/free-regular-svg-icons";
 
+import { QRCodeSVG } from 'qrcode.react';
+import logo from './logo.gif';
 import "./Photo.scss";
 
 const useStyles = makeStyles((theme) => ({
@@ -43,6 +45,7 @@ function Photo({
   const [imageCanvas, setImageCanvas] = useState(null);
   const [zonesCanvas, setZonesCanvas] = useState(null);
   const [facingMode, setFacingMode] = useState("environment");
+  const [currentUrl, setCurrentUrl] = useState('');
 
   const classes = useStyles();
 
@@ -53,6 +56,11 @@ function Photo({
   useEffect(() => {
     drawDetections();
   }, [prediction]);
+
+
+  useEffect(() => {
+    setCurrentUrl(window.location.href);
+  }, []);
 
   const videoRef = useCallback(
     (node) => {
@@ -252,6 +260,17 @@ function Photo({
     );
   }
 
+  function renderAppBar() {
+    return (<>
+      <div className="result">
+        <div className="img-preview qr-logo">
+          <QRCodeSVG value={currentUrl} />
+          <img src={logo} alt="Logo" style={{ maxWidth: '300px' }} />
+        </div>
+      </div>
+    </>)
+  }
+
   function renderSnapshot() {
     const displayResult = image ? {} : { display: "none" };
     const displayButtons = predictionPending ? { display: "none" } : {};
@@ -323,6 +342,7 @@ function Photo({
     <div className="photo">
       {renderCamera()}
       {renderSnapshot()}
+      {renderAppBar()}
     </div>
   );
 }

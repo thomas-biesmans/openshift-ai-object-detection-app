@@ -7,12 +7,16 @@ import { withStyles, makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Slider from "@material-ui/core/Slider";
 import { resetVideo, sendImage } from "../actions";
+import BlinkingEmoji from '../../BlinkingEmoji/components/BlinkingEmoji';
 
 import "./Video.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleNotch, faStop, faSync, faVideo } from "@fortawesome/free-solid-svg-icons";
 import { faCircle } from "@fortawesome/free-regular-svg-icons";
 import { Link } from "react-router-dom";
+
+import { QRCodeSVG } from 'qrcode.react';
+import logo from './logo.gif';
 
 function Video({
   reset,
@@ -36,14 +40,20 @@ function Video({
   const [recording, setRecording] = useState(false);
   const [framerate, setFramerate] = useState(2);
   const [facingMode, setFacingMode] = useState("environment");
+  const [currentUrl, setCurrentUrl] = useState('');
 
   useEffect(() => {
-    if (status.kafka === "disconnected") history.push("/photo");
+    // if (status.kafka === "disconnected") 
+    history.push("/video");
   }, [status]);
 
   useEffect(() => {
     setFrame();
   }, [prediction, image]);
+
+  useEffect(() => {
+    setCurrentUrl(window.location.href);
+  }, []);
 
   const videoRef = useCallback(
     (node) => {
@@ -201,6 +211,18 @@ function Video({
     }
   }
 
+  function renderAppBar() {
+    return (<>
+      <div className="camera">
+        <div className="img-preview qr-logo">
+          <QRCodeSVG value={currentUrl} />
+          <img src={logo} alt="Logo" style={{ maxWidth: '300px' }} />
+          <BlinkingEmoji />
+        </div>
+      </div>
+    </>)
+  }
+
   function renderCamera() {
     const displayCamera = recording ? { display: "none" } : {};
 
@@ -299,6 +321,7 @@ function Video({
   return (
     <div className="video">
       {renderCamera()}
+      {renderAppBar()}
       {renderObjectDetection()}
       {renderCaptureCanvas()}
     </div>
