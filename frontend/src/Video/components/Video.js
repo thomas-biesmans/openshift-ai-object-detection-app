@@ -11,7 +11,7 @@ import BlinkingEmoji from '../../BlinkingEmoji/components/BlinkingEmoji';
 
 import "./Video.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCircleNotch, faStop, faSync, faVideo } from "@fortawesome/free-solid-svg-icons";
+import { faCameraAlt, faCameraRetro, faCameraRotate, faCircleNotch, faStop, faSync, faVideo } from "@fortawesome/free-solid-svg-icons";
 import { faCircle } from "@fortawesome/free-regular-svg-icons";
 import { Link } from "react-router-dom";
 
@@ -273,9 +273,12 @@ function Video({
               className="choose-camera-button"
               onClick={onFacingModeClicked}
             >
-              <FontAwesomeIcon icon={faVideo} />
+              <FontAwesomeIcon icon={faCameraRetro} />
             </Button>
           </Link>
+        </div>
+        <div style={{ color: 'white' }}>
+          Photo mode 💙
         </div>
       </div>
     );

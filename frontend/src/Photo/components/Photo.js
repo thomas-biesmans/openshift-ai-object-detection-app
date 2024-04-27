@@ -10,6 +10,8 @@ import {
   faSync,
   faVideoSlash,
   faExclamationCircle,
+  faVideoCamera,
+  faVideo,
 } from "@fortawesome/free-solid-svg-icons";
 import { faCircle } from "@fortawesome/free-regular-svg-icons";
 
@@ -252,9 +254,12 @@ function Photo({
               className="choose-camera-button"
               onClick={onFacingModeClicked}
             >
-              <FontAwesomeIcon icon={faVideoSlash} />
+              <FontAwesomeIcon icon={faVideo} />
             </Button>
           </Link>
+        </div>
+        <div style={{ color: 'white' }}>
+          Video mode 🎤
         </div>
       </div>
     );
