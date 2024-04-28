@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { connect } from "react-redux";
 import { Ollama } from 'ollama/dist/browser.mjs'
 
-function OllamaText() {
+function OllamaText({ labels }) {
     const [response, setResponse] = useState('');
     const [loading, setLoading] = useState(false);
 
@@ -13,7 +13,7 @@ function OllamaText() {
             const userInput = `
 I am living in a fictive world. 
 I will use the following list of objects to generate captivating stories used as subtitles in videos. 
-List of words: cat, dog, balcony, food. 
+${labels.join(',')}. 
 Make it fun and short. 
 The sentence generated should refer to the objects, and use funny real life expressions 
 but that are not vulgar or insulting. 

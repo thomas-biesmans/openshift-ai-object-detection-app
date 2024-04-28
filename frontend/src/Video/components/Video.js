@@ -14,6 +14,7 @@ import { Link } from "react-router-dom";
 
 import { QRCodeSVG } from 'qrcode.react';
 import logo from './logo.gif';
+import OllamaText from "../../Photo/components/OllamaText";
 
 function Video({
   sendImage,
@@ -202,6 +203,16 @@ function Video({
 
   function renderCamera() {
     const displayCamera = recording ? { display: "none" } : {};
+    const labels = [];
+
+    if (prediction) {
+      prediction.detections
+        .filter((d) => d.score > minScore)
+        .forEach((d) => {
+          labels.push(d.label);
+        });
+    }
+
 
     return (
       <div className="camera" style={displayCamera}>
@@ -256,6 +267,7 @@ function Video({
         </div>
         <div style={{ color: 'white' }}>
           Photo mode 💙
+          <OllamaText labels={labels} />
         </div>
       </div>
     );
