@@ -250,7 +250,7 @@ function Photo({
           </Link>
         </div>
         <div style={{ color: 'white' }}>
-          Video mode 🎤
+          Photo mode 💙
         </div>
       </div>
     );

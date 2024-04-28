@@ -7,7 +7,7 @@ function OllamaText({ labels }) {
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
-        const ollama = new Ollama({ host: 'https://ollama-route-ollama.apps.rosa.gd2.jo1y.p3.openshiftapps.com', });
+        const ollama = new Ollama({ host: 'https://ollama-ollama.apps.rosa.gd2.jo1y.p3.openshiftapps.com', });
         const fetchResponse = async () => {
             setLoading(true);
             const userInput = `

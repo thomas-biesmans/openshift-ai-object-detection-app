@@ -266,7 +266,7 @@ function Video({
           </Link>
         </div>
         <div style={{ color: 'white' }}>
-          Photo mode 💙
+          Video mode 💙
           <OllamaText labels={labels} />
         </div>
       </div>
