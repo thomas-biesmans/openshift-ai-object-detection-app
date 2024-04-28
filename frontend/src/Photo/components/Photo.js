@@ -1,43 +1,32 @@
-import React, { useState, useEffect, useCallback, Component } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { Button, Switch } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
+import { Button } from "@material-ui/core";
 import { resetSearch, searchPhoto } from "../actions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCircleNotch,
   faSync,
-  faVideoSlash,
   faExclamationCircle,
-  faVideoCamera,
   faVideo,
 } from "@fortawesome/free-solid-svg-icons";
 import { faCircle } from "@fortawesome/free-regular-svg-icons";
+import BlinkingEmoji from '../../BlinkingEmoji/components/BlinkingEmoji';
 
 import { QRCodeSVG } from 'qrcode.react';
 import logo from './logo.gif';
 import "./Photo.scss";
+import OllamaText from './OllamaText'
 
-const useStyles = makeStyles((theme) => ({
-  button: {
-    margin: theme.spacing(1),
-  },
-  input: {
-    display: "none",
-  },
-}));
 
 function Photo({
   reset,
   searchPhoto,
   predictionPending,
-  predictionResponse,
   prediction,
   predictionError,
   minScore,
   labelSettings,
-  status,
 }) {
   const [image, setImage] = useState(null);
   const [cameraEnabled, setCameraEnabled] = useState(null);
@@ -49,14 +38,15 @@ function Photo({
   const [facingMode, setFacingMode] = useState("environment");
   const [currentUrl, setCurrentUrl] = useState('');
 
-  const classes = useStyles();
 
   useEffect(() => {
     enableCamera();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     drawDetections();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [prediction]);
 
 

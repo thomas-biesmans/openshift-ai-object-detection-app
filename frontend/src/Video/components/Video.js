@@ -3,15 +3,12 @@ import { connect } from "react-redux";
 import { useHistory } from "react-router-dom";
 
 import { Button } from "@material-ui/core";
-import { withStyles, makeStyles } from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
-import Slider from "@material-ui/core/Slider";
 import { resetVideo, sendImage } from "../actions";
 import BlinkingEmoji from '../../BlinkingEmoji/components/BlinkingEmoji';
 
 import "./Video.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCameraAlt, faCameraRetro, faCameraRotate, faCircleNotch, faStop, faSync, faVideo } from "@fortawesome/free-solid-svg-icons";
+import { faCameraRetro, faStop, faSync } from "@fortawesome/free-solid-svg-icons";
 import { faCircle } from "@fortawesome/free-regular-svg-icons";
 import { Link } from "react-router-dom";
 
@@ -19,12 +16,8 @@ import { QRCodeSVG } from 'qrcode.react';
 import logo from './logo.gif';
 
 function Video({
-  reset,
   sendImage,
   user,
-  userId,
-  date,
-  time,
   image,
   prediction,
   minScore,
@@ -38,6 +31,7 @@ function Video({
   const [zonesCanvas, setZonesCanvas] = useState(null);
   const [intervalId, setIntervalId] = useState(null);
   const [recording, setRecording] = useState(false);
+  // eslint-disable-next-line no-unused-vars
   const [framerate, setFramerate] = useState(2);
   const [facingMode, setFacingMode] = useState("environment");
   const [currentUrl, setCurrentUrl] = useState('');
@@ -45,10 +39,11 @@ function Video({
   useEffect(() => {
     // if (status.kafka === "disconnected") 
     history.push("/video");
-  }, [status]);
+  }, [history, status]);
 
   useEffect(() => {
     setFrame();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [prediction, image]);
 
   useEffect(() => {
@@ -193,15 +188,6 @@ function Video({
     setRecording(false);
   }
 
-  function onFramerateChange(event, newValue) {
-    console.log(newValue);
-    setFramerate(newValue);
-    if (recording) {
-      clearInterval(intervalId);
-      let x = setInterval(() => captureFrame(), 1000 / framerate);
-      setIntervalId(x);
-    }
-  }
 
   function onFacingModeClicked() {
     if (facingMode === "user") {
