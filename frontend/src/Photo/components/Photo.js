@@ -27,6 +27,7 @@ function Photo({
   predictionError,
   minScore,
   labelSettings,
+  status
 }) {
   const [image, setImage] = useState(null);
   const [cameraEnabled, setCameraEnabled] = useState(null);

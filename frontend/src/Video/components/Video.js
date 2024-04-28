@@ -37,7 +37,6 @@ function Video({
   const [currentUrl, setCurrentUrl] = useState('');
 
   useEffect(() => {
-    // if (status.kafka === "disconnected") 
     history.push("/video");
   }, [history, status]);
 
