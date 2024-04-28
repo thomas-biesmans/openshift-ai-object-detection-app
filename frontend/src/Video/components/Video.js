@@ -126,7 +126,7 @@ function Video({
     const padding = 2;
     const letterWidth = 7.25;
     const scoreWidth = drawScore ? 4 * letterWidth : 0;
-    const text = drawScore ? `${label} ${Math.floor(score * 100)}%` : label;
+    const text = label;
 
     const width = Math.floor((box.xMax - box.xMin) * imageCanvas.width);
     const height = Math.floor((box.yMax - box.yMin) * imageCanvas.height);
@@ -134,18 +134,10 @@ function Video({
     const y = Math.floor(box.yMin * imageCanvas.height);
     const labelSetting = labelSettings[label];
     const labelWidth = label.length * letterWidth + scoreWidth + padding * 2;
-    drawBox(x, y, width, height, labelSetting.bgColor);
     drawBoxTextBG(x, y + height - textBgHeight, labelWidth, textBgHeight, labelSetting.bgColor);
     drawBoxText(text, x + padding, y + height - padding);
     clearZone(x + 5, y + height - textBgHeight - 4, labelWidth, textBgHeight);
     clearZone(x, y, width, height);
-  }
-
-  function drawBox(x, y, width, height, color) {
-    const ctx = imageCanvas.getContext("2d");
-    ctx.lineWidth = 2;
-    ctx.strokeStyle = color;
-    ctx.strokeRect(x, y, width, height);
   }
 
   function drawBoxTextBG(x, y, width, height, color) {
