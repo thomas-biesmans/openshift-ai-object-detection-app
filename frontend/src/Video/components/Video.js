@@ -13,7 +13,6 @@ import { Link } from "react-router-dom";
 
 import { QRCodeSVG } from 'qrcode.react';
 import logo from './logo.gif';
-import OllamaText from "../../Photo/components/OllamaText";
 
 function Video({
   sendImage,
@@ -171,6 +170,11 @@ function Video({
     let x = setInterval(() => captureFrame(), Math.ceil(1000 / framerate));
     setIntervalId(x);
     setRecording(true);
+
+    if (video) {
+      video.play();
+    }
+
   }
 
   function stopRecording() {
@@ -265,7 +269,6 @@ function Video({
         </div>
         <div style={{ color: 'white' }}>
           Photo mode 💙
-          <OllamaText labels={labels} />
         </div>
       </div>
     );
