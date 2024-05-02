@@ -4,7 +4,6 @@ import { useHistory } from "react-router-dom";
 
 import { Button } from "@material-ui/core";
 import { resetVideo, sendImage } from "../actions";
-import BlinkingEmoji from '../../BlinkingEmoji/components/BlinkingEmoji';
 
 import "./Video.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -195,7 +194,6 @@ function Video({
         <div className="img-preview qr-logo">
           <QRCodeSVG value={currentUrl} />
           <img src={logo} alt="Logo" style={{ maxWidth: '300px' }} />
-          <BlinkingEmoji />
         </div>
       </div>
     </>)
@@ -266,7 +264,7 @@ function Video({
           </Link>
         </div>
         <div style={{ color: 'white' }}>
-          Video mode 💙
+          Photo mode 💙
           <OllamaText labels={labels} />
         </div>
       </div>

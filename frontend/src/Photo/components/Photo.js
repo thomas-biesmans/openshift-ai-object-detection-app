@@ -11,12 +11,10 @@ import {
   faVideo,
 } from "@fortawesome/free-solid-svg-icons";
 import { faCircle } from "@fortawesome/free-regular-svg-icons";
-import BlinkingEmoji from '../../BlinkingEmoji/components/BlinkingEmoji';
 
 import { QRCodeSVG } from 'qrcode.react';
 import logo from './logo.gif';
 import "./Photo.scss";
-import OllamaText from './OllamaText'
 
 
 function Photo({
@@ -250,7 +248,7 @@ function Photo({
           </Link>
         </div>
         <div style={{ color: 'white' }}>
-          Photo mode 💙
+          Video mode 💙
         </div>
       </div>
     );
