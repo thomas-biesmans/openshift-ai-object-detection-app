@@ -247,9 +247,6 @@ function Photo({
             </Button>
           </Link>
         </div>
-        <div style={{ color: 'white' }}>
-          Video mode 💙
-        </div>
       </div>
     );
   }
