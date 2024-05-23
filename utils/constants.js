@@ -1,11 +1,10 @@
-require('dotenv').config({ path: '.env.default' });
 const env = require("env-var");
 const PORT = env.get("PORT").default("8080").asString();
 const IP = env.get("IP").default("0.0.0.0").asString();
 const LOG_LEVEL = env.get("LOG_LEVEL").default("info").asString();
 const OBJECT_DETECTION_URL = env
   .get("OBJECT_DETECTION_URL")
-  .default("http://object-detection-rest:8080/predictions")
+  .default("http://openshift-ai-object-detection-rest-git:8080/predictions")
   .asString();
 
 //  .default("http://object-detection-rest:8080/predictions")
