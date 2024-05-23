@@ -1,3 +1,4 @@
+require('dotenv').config({ path: '.env.default' });
 const env = require("env-var");
 const PORT = env.get("PORT").default("8080").asString();
 const IP = env.get("IP").default("0.0.0.0").asString();
@@ -6,6 +7,11 @@ const OBJECT_DETECTION_URL = env
   .get("OBJECT_DETECTION_URL")
   .default("http://object-detection-rest:8080/predictions")
   .asString();
+
+//  .default("http://object-detection-rest:8080/predictions")
+//  .default("http://openshift-ai-object-detection-rest-git:8080/predictions")
+//  .default("http://openshift-ai-object-detection-rest-git.services.thomas-biesmans-dev.svc.cluster.local:8080/predictions")
+
 const S3_ENDPOINT = env.get("S3_ENDPOINT").asString();
 const S3_BUCKET = env.get("S3_BUCKET").asString();
 const S3_PREFIX = env.get("S3_PREFIX").asString();
